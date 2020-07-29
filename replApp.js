@@ -17,7 +17,7 @@ const convertCase = (cmd) => {
   } // else tell the user that the system cannot recognise their input
   else {
     console.log(
-      "Input not recognised,try a capitalized input or a small letter input"
+      "Input not recognised,try an all capitalized input or an all small letter input"
     );
   }
 };
