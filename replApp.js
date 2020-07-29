@@ -5,8 +5,6 @@
 
 const repl = require("repl");
 
-const message = "Welcome to repl";
-
 // repl.start("> ").context.welcome = message;
 const convertCase = (cmd) => {
   // check uppercase
