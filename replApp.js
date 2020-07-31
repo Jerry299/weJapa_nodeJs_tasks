@@ -5,7 +5,6 @@
 
 const repl = require("repl");
 
-// repl.start("> ").context.welcome = message;
 const convertCase = (cmd) => {
   // check uppercase
   if (cmd === cmd.toUpperCase()) {
@@ -21,4 +20,5 @@ const convertCase = (cmd) => {
     );
   }
 };
+
 repl.start({ prompt: "> ", eval: convertCase });
