@@ -2,23 +2,6 @@ const fs = require("fs");
 const http = require("http");
 const { parse } = require("querystring");
 
-// let data =
-//   "I am getting better with Stears business newsletters Premium, It is 4k per month \n \n";
-// fs.appendFile("./businessNotes.txt", data, (err, data) => {
-//   if (err) {
-//     console.log("There was an error writing to the businessNote   :  ", err);
-//   }
-//   fs.readFile("./businessNotes.txt", "utf8", (err, data) => {
-//     if (err) {
-//       console.log(
-//         "There was an error reading the file in business Notes:   ",
-//         err
-//       );
-//     }
-//     console.log(data);
-//   });
-// });
-
 const server = http.createServer((request, response) => {
   // taking a business note
   if (request.method === "POST" && request.url === "/notes/business") {
@@ -39,24 +22,32 @@ const server = http.createServer((request, response) => {
         console.log("response error: ", err);
       });
       //append a file to business note.txt and read it out
+      // also make sure the note is not empty
 
-      fs.appendFile("./businessNotes.txt", body.note + "\n \n", (err) => {
-        if (err) {
-          console.log(
-            "There was an error writing to the businessNote   :  ",
-            err
-          );
-        }
-        fs.readFile("./businessNotes.txt", "utf8", (err, data) => {
+      if (body.length > 10) {
+        fs.appendFile("./businessNotes.txt", body.note + "\n \n", (err) => {
           if (err) {
             console.log(
-              "There was an error reading the file in business Notes:   ",
+              "There was an error writing to the businessNote   :  ",
               err
             );
           }
-          console.log(data);
+          fs.readFile("./businessNotes.txt", "utf8", (err, data) => {
+            if (err) {
+              console.log(
+                "There was an error reading the file in business Notes:   ",
+                err
+              );
+            }
+            console.log(data);
+          });
         });
-      });
+      } else {
+        response.statusCode = 400;
+        response.end(
+          "Note should contain more than 10 letters and should not be empty"
+        );
+      }
 
       response.end("Note has been succesfuly added to business note");
     });
