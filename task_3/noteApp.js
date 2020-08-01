@@ -5,7 +5,7 @@ const { parse } = require("querystring");
 //beginning of adding a business note endpoint
 const server = http.createServer((request, response) => {
   // creating a read note endpoint for business A GET REQUEST
-  if (request.url === "/notes/read/business" && request.method === "GET") {
+  if (request.url === "/read/business-notes" && request.method === "GET") {
     fs.readFile("./businessNotes.txt", "utf8", (err, data) => {
       if (err) {
         console.log(
@@ -14,21 +14,27 @@ const server = http.createServer((request, response) => {
         );
         response.end("Could not read note");
       }
-      // response.end({ notes: data });
+
       response.setHeader("Content-Type", "application/json");
       response.end(JSON.stringify({ note: data.toString() }));
     });
   }
   // create an instruction endpoint
   else if (request.url === "/" && request.method === "GET") {
-    const instructions = `to add a new business note, go to this endpoint : '/notes/business', To read the content of the business note
-    note go to this endpoint : '/notes/read/business'`;
+    const instructions = `to add a new business note, go to this endpoint : '/create/business-note',
+     To read the content of the business note
+    note go to this endpoint : '/read/business-notes'. To read a health related note go to '/read/health-note',
+    to create a health related note go to '/create/health-note'
+    `;
 
     response.end(JSON.stringify({ instructions }));
   }
 
   // taking a business note A POST REQUEST
-  else if (request.method === "POST" && request.url === "/notes/business") {
+  else if (
+    request.method === "POST" &&
+    request.url === "/create/business-note"
+  ) {
     let body = "";
     request.on("error", (err) => {
       console.log(err);
@@ -49,30 +55,156 @@ const server = http.createServer((request, response) => {
       // also make sure the note is not empty
 
       if (body.note.length > 10) {
-        fs.appendFile(
-          "./businessNotes.txt",
-          body.note.padStart(3, " "),
-          (err) => {
-            if (err) {
-              console.log(
-                "There was an error writing to the businessNote   :  ",
-                err
-              );
-            }
+        fs.writeFile("./businessNotes.txt", body.note, (err) => {
+          if (err) {
+            console.log(
+              "There was an error writing to the businessNote   :  ",
+              err
+            );
           }
-        );
+        });
       } else {
-        response.statusCode = 400;
+        response.statusCode = 411;
         response.end(
           "Note should contain more than 10 letters and should not be empty"
         );
       }
 
-      response.end("Note has been succesfuly added to business note");
+      response.end("Note has been successfuly added to business note");
     });
   }
+
+  // updating the business note file
+  else if (
+    request.url === "/update/business-note" &&
+    request.method === "POST"
+  ) {
+    let body = "";
+    request.on("error", (err) => {
+      console.log(err);
+      response.statusCode = 404;
+      response.end("Could not update business note");
+    });
+    request.on("data", (chunk) => {
+      body += chunk;
+    });
+    request.on("end", () => {
+      body = parse(body);
+
+      response.on("error", (err) => {
+        console.log("response : ", err);
+        response.end("business note update Failed");
+      });
+      //ensure the update is not empty
+      if (body.note.length > 10) {
+        fs.appendFile("./businessNotes.txt", body.note, (err) => {
+          if (err) {
+            response.statusCode = 400;
+            response.end("Could not save updated business note");
+          }
+          response.statusCode = 201;
+          response.end("Business note updated and saved succesfully");
+        });
+      } else {
+        response.statusCode = 411;
+        response.end("Notes update should be more than 10 letters");
+      }
+    });
+  }
+  //end of business note endpoint
+
+  //beginning of making a health related note
+  else if (request.url === "/read/health-note" && request.method === "GET") {
+    fs.readFile("./healthNotes.txt", (err, data) => {
+      if (err) {
+        response.statusCode = 503;
+        response.end("Unable to read health notes");
+      }
+
+      response.statusCode = 200;
+      response.setHeader("Content-Type", "application/json");
+      response.end(JSON.stringify({ "Health-Notes": data.toString() }));
+    });
+  } else if (
+    request.url === "/create/health-note" &&
+    request.method === "POST"
+  ) {
+    let body = "";
+    request
+      .on("error", () => {
+        response.statusCode = 400;
+        response.end("Could not send health notes");
+      })
+      .on("data", (chunk) => {
+        body += chunk;
+      })
+      .on("end", () => {
+        body = parse(body);
+
+        response.on("error", () => {
+          response.statusCode = 404;
+          response.end("Error while saving note,Try again");
+        });
+        console.log(body);
+        if (body.note.length > 10) {
+          fs.writeFile("./healthNotes.txt", body.note, (err) => {
+            if (err) {
+              console.log(
+                "There was an error writing to the Health Note   :  ",
+                err
+              );
+            }
+            response.statusCode = 200;
+            response.end("Created a health note successfully");
+          });
+        } else {
+          response.statusCode = 411;
+          response.end(
+            "Note should contain more than 10 letters and should not be empty"
+          );
+        }
+      });
+  } else if (
+    request.url === "/update/health-note" &&
+    request.method === "POST"
+  ) {
+    let body = "";
+    request
+      .on("error", () => {
+        response.statusCode = 400;
+        response.end("Could not send health notes");
+      })
+      .on("data", (chunk) => {
+        body += chunk;
+      })
+      .on("end", () => {
+        body = parse(body);
+
+        response.on("error", () => {
+          response.statusCode = 404;
+          response.end("Error while saving note,Try again");
+        });
+        console.log(body);
+        if (body.note.length > 10) {
+          fs.appendFile("./healthNotes.txt", body.note, (err) => {
+            if (err) {
+              console.log(
+                "There was an error updating the Health Note   :  ",
+                err
+              );
+            }
+            response.statusCode = 200;
+            response.end("Updated a health note successfully");
+          });
+        } else {
+          response.statusCode = 411;
+          response.end(
+            "Note should contain more than 10 letters and should not be empty"
+          );
+        }
+      });
+  }
 });
-//end of adding a business note endpoint
 
 const PORT = 5000;
 server.listen(PORT, () => {
