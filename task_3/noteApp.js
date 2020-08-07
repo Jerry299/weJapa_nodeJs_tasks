@@ -4,6 +4,19 @@ const { parse } = require("querystring");
 
 //beginning of adding a business note endpoint
 const server = http.createServer((request, response) => {
+  // create an instruction endpoint
+  if (request.url === "/" && request.method === "GET") {
+    const instructions = {
+      "Write New Business Note url": "/create/business-note",
+      "Read All Business Notes url": "/read/business-notes",
+      "Write New Health Note url": "/create/health-note",
+      "Read All Health Notes url": "/read/health-note",
+    };
+
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.end(JSON.stringify(instructions));
+  }
+
   // creating a read note endpoint for business A GET REQUEST
   if (request.url === "/read/business-notes" && request.method === "GET") {
     fs.readFile("./businessNotes.txt", "utf8", (err, data) => {
@@ -12,22 +25,13 @@ const server = http.createServer((request, response) => {
           "There was an error reading the file in business Notes:   ",
           err
         );
-        response.end("Could not read note");
+        response.setHeader("Content-Type", "application/json");
+        response.end({ error: "Could not read note" });
       }
 
       response.setHeader("Content-Type", "application/json");
       response.end(JSON.stringify({ note: data.toString() }));
     });
-  }
-  // create an instruction endpoint
-  else if (request.url === "/" && request.method === "GET") {
-    const instructions = `to add a new business note, go to this endpoint : '/create/business-note',
-     To read the content of the business note
-    note go to this endpoint : '/read/business-notes'. To read a health related note go to '/read/health-note',
-    to create a health related note go to '/create/health-note'
-    `;
-
-    response.end(JSON.stringify({ instructions }));
   }
 
   // taking a business note A POST REQUEST
@@ -53,7 +57,7 @@ const server = http.createServer((request, response) => {
       });
       //append a file to business note.txt and read it out
       // also make sure the note is not empty
-
+      console.log(body.note, " body.note ", body.id, " body.id ");
       if (body.note.length > 10) {
         fs.writeFile("./businessNotes.txt", body.note, (err) => {
           if (err) {
