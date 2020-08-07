@@ -57,9 +57,18 @@ const server = http.createServer((request, response) => {
       });
       //append a file to business note.txt and read it out
       // also make sure the note is not empty
-      console.log(body.note, " body.note ", body.id, " body.id ");
+      function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //
+      }
+      const jsonReq = {
+        id: getRandomIntInclusive(0, 3670),
+        note: body.note,
+      };
+      console.log(jsonReq);
       if (body.note.length > 10) {
-        fs.writeFile("./businessNotes.txt", body.note, (err) => {
+        fs.writeFile("./businessNotes.txt", JSON.stringify(jsonReq), (err) => {
           if (err) {
             console.log(
               "There was an error writing to the businessNote   :  ",
