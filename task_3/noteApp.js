@@ -28,9 +28,10 @@ const server = http.createServer((request, response) => {
         response.setHeader("Content-Type", "application/json");
         response.end({ error: "Could not read note" });
       }
-
+      let arrBody = JSON.parse(data.toString());
+      console.log(arrBody);
       response.setHeader("Content-Type", "application/json");
-      response.end(JSON.stringify({ note: data.toString() }));
+      response.end(JSON.stringify({ note: arrBody }));
     });
   }
 
@@ -68,62 +69,33 @@ const server = http.createServer((request, response) => {
       };
       console.log(jsonReq);
       if (body.note.length > 10) {
-        fs.writeFile("./businessNotes.txt", JSON.stringify(jsonReq), (err) => {
-          if (err) {
-            console.log(
-              "There was an error writing to the businessNote   :  ",
-              err
-            );
+        fs.appendFile(
+          "./businessNotes.txt",
+          `${JSON.stringify(jsonReq)} + "\n"`,
+          (err) => {
+            if (err) {
+              console.log(
+                "There was an error writing to the businessNote   :  ",
+                err
+              );
+            }
           }
-        });
-      } else {
-        response.statusCode = 411;
-        response.end(
-          "Note should contain more than 10 letters and should not be empty"
         );
-      }
-
-      response.end("Note has been successfuly added to business note");
-    });
-  }
-
-  // updating the business note file
-  else if (
-    request.url === "/update/business-note" &&
-    request.method === "POST"
-  ) {
-    let body = "";
-    request.on("error", (err) => {
-      console.log(err);
-      response.statusCode = 404;
-      response.end("Could not update business note");
-    });
-    request.on("data", (chunk) => {
-      body += chunk;
-    });
-    request.on("end", () => {
-      body = parse(body);
-
-      response.on("error", (err) => {
-        console.log("response : ", err);
-        response.end("business note update Failed");
-      });
-      //ensure the update is not empty
-      if (body.note.length > 10) {
-        fs.appendFile("./businessNotes.txt", body.note, (err) => {
-          if (err) {
-            response.statusCode = 400;
-            response.end("Could not save updated business note");
-          }
-          response.statusCode = 201;
-          response.end("Business note updated and saved succesfully");
-        });
       } else {
         response.statusCode = 411;
-        response.end("Notes update should be more than 10 letters");
+        response.setHeader("Content-Type", "application/json");
+        response.end({
+          error:
+            "Note should contain more than 10 letters and should not be empty",
+        });
       }
+      response.setHeader("Content-Type", "application/json");
+      response.end({
+        message: "Note has been successfuly added to business note",
+      });
     });
   }
+
   //end of business note endpoint
 
   //beginning of making a health related note
