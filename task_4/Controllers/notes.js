@@ -41,6 +41,8 @@ const homePage = async (req, res) => {
                 align-items: center;
                 flex-direction: column;
                  ">
+            <li style="margin-bottom: 1.5rem"><a href='/folders'>Show all folders</a>  (endpoint = /folders)</li>
+            <li style="margin-bottom: 1.5rem"><a href='/all-notes'>Show all notes</a>  (endpoint = /all-notes</li>
             <li style="margin-bottom: 1.5rem"><a href='/note'>Add new Note</a>  (endpoint = /note)</li>
             <li style="margin-bottom: 1.5rem"><a href='/update'>Edit Note</a>  (endpoint = /edit)</li>
             <li style="margin-bottom: 1.5rem"><a href='/delete'>Delete Note</a> (endpoint = /delete)</li>
@@ -104,8 +106,43 @@ const createNewNotes = async (req, res) => {
     }
   });
 };
+
+//get all directories /folders
+const getAllFolders = async (req, res) => {
+  fs.readdir("db", (err, stats) => {
+    if (err) throw error(err);
+    let statItem = stats.map((item) => {
+      return ` <li style=" font-size: 1.5rem; margin-left: 7rem;" >${item}</li>`;
+    });
+
+    const allFoders = `
+    <html>
+    <body style="font-family: Arial, Helvetica, sans-serif;">
+      <h2 style="font-size: 3.7rem;
+                color: #158467;
+                text-align: center;
+                margin: 2rem;">
+                List of all Directories
+        </h2>
+        <div style="width: 30% ;display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;">
+          <ol >
+           ${statItem}
+          </ol>
+        </div>
+    </body>
+    </html>
+    `;
+    res.end(allFoders);
+  });
+};
+
+//get a
 module.exports = {
   homePage: homePage,
   notesPage: notesPage,
   createNewNotes: createNewNotes,
+  getAllFolders: getAllFolders,
 };
