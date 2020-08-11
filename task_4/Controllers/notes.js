@@ -66,13 +66,50 @@ const createNewNotes = async (req, res) => {
         body.folder.length < 1 ||
         body.note.length < 10
       ) {
-        const response = {
-          success: false,
-          message:
-            "title,folder and note cannot be blank and less than 5 letters,Notes should be more than 10 letters.",
-        };
-        res.writeHead(400, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(response));
+        //former json response to be sent.switched to html now
+        // const jsonResponse = {
+        //   success: false,
+        //   message:
+        //     "title,folder and note cannot be blank and less than 5 letters,Notes should be more than 10 letters.",
+        // };
+        const htmlResponse = `
+        <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fail</title>
+  </head>
+  <body
+    style="
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, Helvetica, sans-serif;
+    "
+  >
+    <h2 style="font-size: 1.5rem; color: #900d0d;">OOPPS...</h2>
+    <h3 style="font-size: 1.2rem; color: #423144; font-weight: 600;">
+      Sorry, You can not create a note
+    </h3>
+    <img
+      src="https://png.pngtree.com/png-vector/20190627/ourmid/pngtree-25d-stereo-404-page-lost-png-image_1511831.jpg"
+      alt="fail-image"
+    />
+    <p style="font-size: 1.1rem; color: #0f4c75;">
+      Title and folder cannot be blank
+    </p>
+    <h5 style="font-size: 1.1rem; color: #0f4c75;">
+      note should be more than 10 letters
+    </h5>
+  </body>
+</html>
+
+        `;
+        res.writeHead(404, { "Content-Type": "text/html" });
+        res.end(htmlResponse);
       }
       //check if folder exists
       if (!fs.existsSync(body.folder)) {
@@ -91,13 +128,43 @@ const createNewNotes = async (req, res) => {
             if (err) {
               console.log("Error while writing note");
             }
-            const response = {
-              success: true,
-              title: title,
-              folder: folder,
-            };
-            res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify(response));
+            // const response = {
+            //   success: true,
+            //   title: title,
+            //   folder: folder,
+            // };
+            const response = `
+            <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Success</title>
+    </head>
+    <body
+    style="
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, Helvetica, sans-serif;
+    "
+  >
+    <h2 style="font-size: 1.5rem; color: #158467;">Heeya, SUCCESS</h2>
+    <h3 style="font-size: 1.2rem; color: #423144; font-weight: 600;">
+      Note has been successfully created.
+    </h3>
+    <img
+      src="https://icon2.cleanpng.com/20180314/foe/kisspng-business-internet-service-organization-computer-so-web-page-green-registration-success-button-5aa99d9ece0813.0931067015210653748439.jpg"
+      alt="success-image"
+    />
+  </body>
+</html>
+
+            `;
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(response);
           }
         );
       }
@@ -139,7 +206,8 @@ const getAllFolders = async (req, res) => {
   });
 };
 
-//get a
+//delete notes
+
 module.exports = {
   homePage: homePage,
   notesPage: notesPage,
