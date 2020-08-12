@@ -6,6 +6,8 @@ const {
   notesPage,
   createNewNotes,
   getAllFolders,
+  delNote,
+  showNotes,
 } = require("../Controllers/notes");
 
 const server = http.createServer((req, res) => {
@@ -19,6 +21,10 @@ const server = http.createServer((req, res) => {
     createNewNotes(req, res);
   } else if (myURL.pathname === "/folders" && req.method === "GET") {
     getAllFolders(req, res);
+  } else if (myURL.pathname === "/delete-note" && req.method === "GET") {
+    showNotes(req, res);
+  } else if (myURL.pathname === "/delete-note" && req.method === "POST") {
+    delNote(req, res);
   }
 });
 
