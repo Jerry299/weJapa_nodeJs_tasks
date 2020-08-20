@@ -1,17 +1,15 @@
 import express from "express";
 const app = express();
+import path from "path";
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 
-const obj = {
-  id: 1,
-  name: "gbegiri",
-  description: "It is a yoruba local soup, it is sweet on amala",
-};
-
-app.get("/api/v1/recipe", (req, res) => {
-  res.status(200).json({ "recipe Api": obj });
+app.get("/", (req, res) => {
+  res.status(200).render("home");
 });
 
 const port = process.env.PORT || 5000;
