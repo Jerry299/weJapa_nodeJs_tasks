@@ -4,7 +4,7 @@
   margin-top: 3rem;
 }
 h1 {
-  color: white;
+  color: rgb(202, 52, 52);
 }
 
 /* add media queries */
@@ -20,4 +20,15 @@ h1 {
 
 /* ----------- Retina Screens ----------- */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+}
+
+/* phones */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .app-body {
+    background: linear-gradient(-20deg, #fa7c30 50%, rgba(0, 0, 0, 0.5) 30%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
