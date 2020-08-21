@@ -1,34 +1,115 @@
-#home,
-#home-form {
-  height: 100vh;
-  margin-top: 3rem;
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@300;500&family=Noto+Sans+JP:wght@500&display=swap");
+/* global css */
+.display {
+  font-family: "Asap", sans-serif;
 }
-h1 {
-  color: rgb(202, 52, 52);
+.display-body {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #fff;
+}
+h3 {
+  color: #141958;
+}
+.navbar-brand {
+  font-family: Garamond, Helvetica, sans-serif;
+  font-style: italic;
 }
 
 /* add media queries */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   .app-body {
-    background: linear-gradient(-70deg, #fa7c30 40%, rgba(0, 0, 0, 0.5) 30%),
+    background: linear-gradient(-70deg, #fa7c30 45%, rgba(0, 0, 0, 0.5) 30%),
       url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
 
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  #home,
+  #home-form {
+    height: 92vh;
+    margin-top: 1rem;
+  }
+  h1 {
+    color: rgb(241, 233, 233);
+  }
+  #weather-input {
+    margin-top: 1rem;
+  }
+  .display-message {
+    margin-top: 5rem;
+  }
+  .display {
+    margin-bottom: 4rem;
+  }
+  #form-header {
+    padding-top: 6rem;
+  }
+  .display-body {
+    letter-spacing: 0.1rem;
+    color: rgb(206, 216, 226);
+    line-height: 2rem;
+  }
+}
+
+/* phones */
+@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  .app-body {
+    background: linear-gradient(-30deg, #fa7c30 60%, rgba(0, 0, 0, 0.5) 70%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70vw;
+  }
+  #home-form {
+    margin-top: 11rem;
+  }
+  #home-form h3 {
+    text-align: center;
+  }
+  .display-message {
+    margin-top: 5rem;
+  }
+  .display {
+    margin-bottom: 3rem;
+    color: rgb(255, 255, 255);
+  }
+  .display-body {
+    letter-spacing: 0.1rem;
+    color: rgb(206, 216, 226);
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .app-body {
+    background: linear-gradient(-20deg, #fa7c30 10%, rgba(0, 0, 0, 0.5) 80%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100%;
+  }
+  #home-form {
+    margin-top: 3rem;
+  }
+  #home-form h3 {
+    text-align: center;
+  }
+  .display-message {
+    margin-top: 5rem;
+  }
+  .display {
+    margin-bottom: 3rem;
+    color: rgb(255, 255, 255);
+  }
+  .display-body {
+    letter-spacing: 0.1rem;
+    color: rgb(206, 216, 226);
   }
 }
 
 /* ----------- Retina Screens ----------- */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-}
-
-/* phones */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
-  .app-body {
-    background: linear-gradient(-20deg, #fa7c30 50%, rgba(0, 0, 0, 0.5) 30%),
-      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
-
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
 }
