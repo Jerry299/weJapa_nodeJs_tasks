@@ -44,6 +44,13 @@ h3 {
     background-repeat: no-repeat;
     background-size: cover;
   }
+  .app-body2 {
+    background: linear-gradient(-70deg, #43ec43 45%, rgba(0, 0, 0, 0.3) 30%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   #home,
   #home-form {
     height: 92vh;
@@ -70,6 +77,41 @@ h3 {
     line-height: 2rem;
   }
   /* css for weather ejs starts here */
+  .city {
+    font-size: 1.7rem;
+    color: #93b5e1;
+  }
+  .city-name {
+    margin-left: 2.3rem;
+    color: #ff847c;
+    font-size: 1.2rem;
+  }
+  .dta-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .dta-response {
+    font-family: "Josefin Sans", sans-serif;
+    color: #006a71;
+    margin-left: 2rem;
+  }
+  h1 {
+    color: rgb(236, 229, 229);
+  }
+  .home a {
+    text-decoration: none;
+    color: rgb(243, 203, 203);
+    float: right;
+  }
+  .waether {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .results {
+    margin: 2rem;
+  }
+
   /* css for weather ejs ends here */
 }
 

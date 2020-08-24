@@ -38,7 +38,7 @@
         </span>
       </div>
     </nav>
-    <div class="app-body">
+    <div class="app-body2">
       <div class="container-fluid" id="home">
         <div class="row justify-content-around">
           <div class="col-md-5 display-message">
@@ -66,19 +66,23 @@
                 >
                 <input
                   class="form-control mb-3"
-                  type="number"
+                  type="text"
                   placeholder="Enter Your City Latitude ........"
                   aria-label="Search"
+                  name="lat"
                 />
+                <small class="errorMsg"></small>
                 <label class="text-white mt-2 ml-1"
-                  >Latitude (Must be a Number)</label
+                  >Longitude (Must be a Number)</label
                 >
                 <input
                   class="form-control mb-3"
-                  type="number"
+                  type="text"
                   placeholder="Enter Your City Longitude ........"
                   aria-label="Search"
+                  name="long"
                 />
+                <small class="errorMsg"></small>
                 <div class="input-group mb-3 mt-3">
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"
@@ -91,15 +95,16 @@
                     name="map"
                   >
                     <option selected>Choose A Map Type...</option>
-                    <option value="precipitates">Precipitation</option>
-                    <option value="cloud">Cloud</option>
-                    <option value="temp">Temperature</option>
+                    <option value="precipitation">Precipitation</option>
+                    <option value="clouds">Cloud</option>
+                    <option value="temperature">Temperature</option>
                     <option value="wind">Wind</option>
                     <option value="pressure">Pressure</option>
                   </select>
                 </div>
+                <small class="errorMsg"></small>
                 <button class="btn btn-primary btn-lg m-3" type="submit">
-                  Search
+                  Get Map
                 </button>
               </form>
             </div>
