@@ -34,6 +34,9 @@ h3 {
   margin: 12rem 5px 0 5px;
 }
 /* css for error page sorry */
+#mapid {
+  height: 180px;
+}
 
 /* add media queries */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1800px) {
