@@ -1,0 +1,211 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@300;500&family=Noto+Sans+JP:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap");
+/* global css */
+.display {
+  font-family: "Asap", sans-serif;
+}
+.display-body {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #fff;
+}
+h3 {
+  color: #141958;
+}
+.navbar-brand {
+  font-family: Garamond, Helvetica, sans-serif;
+  font-style: italic;
+}
+/* css for weather ejs starts here */
+.results {
+  margin-top: 3rem;
+}
+.weather {
+  background-image: url("https://res.cloudinary.com/jerry299/image/upload/c_scale,w_237/v1598243773/daniel-ramirez-q4TfWtnz_xw-unsplash_i4xheq.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  max-width: 100%;
+}
+/* css for weather ejs ends here */
+/* css for error page sorry */
+.sorry {
+  color: #e64c59;
+  margin: 12rem 5px 0 5px;
+}
+/* css for error page sorry */
+#mapid {
+  height: 180px;
+}
+
+/* add media queries */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1800px) {
+  .app-body {
+    background: linear-gradient(-70deg, #fa7c30 45%, rgba(0, 0, 0, 0.5) 30%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .app-body2 {
+    background: linear-gradient(-70deg, #43ec43 45%, rgba(0, 0, 0, 0.3) 30%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #home,
+  #home-form {
+    height: 92vh;
+    margin-top: 1rem;
+  }
+  h1 {
+    color: rgb(241, 233, 233);
+  }
+  #weather-input {
+    margin-top: 1rem;
+  }
+  .display-message {
+    margin-top: 5rem;
+  }
+  .display {
+    margin-bottom: 4rem;
+  }
+  #form-header {
+    padding-top: 6rem;
+  }
+  .display-body {
+    letter-spacing: 0.1rem;
+    color: rgb(206, 216, 226);
+    line-height: 2rem;
+  }
+  /* css for weather ejs starts here */
+  .city {
+    font-size: 1.7rem;
+    color: #93b5e1;
+  }
+  .city-name {
+    margin-left: 2.3rem;
+    color: #ff847c;
+    font-size: 1.2rem;
+  }
+  .dta-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .dta-response {
+    font-family: "Josefin Sans", sans-serif;
+    color: #006a71;
+    margin-left: 2rem;
+  }
+  h1 {
+    color: rgb(236, 229, 229);
+  }
+  .home a {
+    text-decoration: none;
+    color: rgb(243, 203, 203);
+    float: right;
+  }
+  .waether {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .results {
+    margin: 2rem;
+  }
+
+  /* css for weather ejs ends here */
+}
+
+/* phones */
+@media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  .app-body {
+    background: linear-gradient(-30deg, #fa7c30 60%, rgba(0, 0, 0, 0.5) 70%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70vw;
+  }
+  #home-form {
+    margin-top: 11rem;
+  }
+  #home-form h3 {
+    text-align: center;
+  }
+  .display-message {
+    margin-top: 5rem;
+  }
+  .display {
+    margin-bottom: 3rem;
+    color: rgb(255, 255, 255);
+  }
+  .display-body {
+    letter-spacing: 0.1rem;
+    color: rgb(206, 216, 226);
+  }
+  /* css for weather ejs starts here */
+  /* css for weather ejs ends here */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .app-body {
+    background: linear-gradient(-20deg, #fa7c30 10%, rgba(0, 0, 0, 0.5) 80%),
+      url("https://res.cloudinary.com/jerry299/image/upload/c_fit,r_4,w_1092/v1597899566/weatherpic1_gpy9o5.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100%;
+  }
+  #home-form {
+    margin-top: 3rem;
+  }
+  #home-form h3 {
+    text-align: center;
+  }
+  .display-message {
+    margin-top: 5rem;
+  }
+  .display {
+    margin-bottom: 3rem;
+    color: rgb(255, 255, 255);
+  }
+  .display-body {
+    letter-spacing: 0.1rem;
+    color: rgb(206, 216, 226);
+  }
+  /* css for weather ejs starts here */
+  .city {
+    font-size: 1.7rem;
+    color: #93b5e1;
+  }
+  .city-name {
+    margin-left: 2.3rem;
+    color: #ff847c;
+    font-size: 1.2rem;
+  }
+  .dta-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .dta-response {
+    font-family: "Josefin Sans", sans-serif;
+    color: #006a71;
+  }
+  h1 {
+    color: rgb(236, 229, 229);
+  }
+  .home a {
+    text-decoration: none;
+    color: rgb(243, 203, 203);
+    float: right;
+  }
+
+  /* css for weather ejs ends here */
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+}

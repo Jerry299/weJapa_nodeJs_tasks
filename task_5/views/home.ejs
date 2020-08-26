@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Weather APP</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/api/map">Map</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          Check the weather report for your favorite cities
+        </span>
+      </div>
+    </nav>
+    <div class="app-body">
+      <div class="container-fluid" id="home">
+        <div class="row justify-content-around">
+          <div class="col-md-5 display-message">
+            <h1 class="display">
+              Get The Current Weather Information for Your City.
+            </h1>
+            <div class="display-body">
+              Want to catch a train home, but don't want to be stuck in a
+              terrible weather? Then save yourself of calling a meterlogist,
+              we've got you covered.Just enter your city name into the search
+              bar and get the current weather data
+            </div>
+          </div>
+          <div class="col-md-4 offset-md-2" id="home-form">
+            <h3 id="form-header">Check Your City Current Weather Info</h3>
+            <div class="check-weather">
+              <form
+                action="/api/result"
+                method="GET"
+                class="col-sm-12"
+                id="weather-input"
+              >
+                <input
+                  class="form-control m-2"
+                  type="search"
+                  placeholder="Enter Your City Name ........"
+                  aria-label="Search"
+                  name="city"
+                />
+                <button class="btn btn-outline-primary m-3" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- script for bootstrap jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
