@@ -45,8 +45,7 @@ router.get("/map-result", (req, res) => {
   //     res.status(404).render("cityError");
   //   });
 
-  const mymap = L.map("mapid").setView([51.505, -0.09], 13);
-  res.render("mapsResult", { data: mymap });
+  res.render("mapsResult");
 });
 
 export default router;
